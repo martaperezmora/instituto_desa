@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+
+<head th:replace="commons/header :: header" />
+
+<body>
+  <div th:replace="commons/menu :: menu" />
+  <a th:href="@{/alumnos/nuevo}" class="btn btn-primary">nuevo alumno</a>
+ 
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col" >codigo</th>
+        <th scope="col" >Nombre</th>
+        <th scope="col" >Apellidos</th>
+        <th scope="col" >Dni</th>
+        <th scope="col" >Fecha nacimiento</th>
+        <th scope="col" >email</th>
+        <th scope="col" >nuevo</th>
+        <th scope="col"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr th:each="alumno : ${alumnos}">
+        <th scope="row" th:text="${alumno.codigo}"></th>
+        <td th:text="${alumno.nombre}"></td>
+        <td th:text="${alumno.apellidos}"></td>
+        <td th:text="${alumno.dni}"></td>
+        <td th:text="${alumno.fechaNac}"></td>
+        <td th:text="${alumno.email}"></td>
+        <td th:text="${alumno.esNuevo} ? 'S' : 'N'"></td>
+        <td>
+          <a th:href="@{/alumnos/edit/}+${alumno.codigo}" class="btn btn-primary">detalle</a>
+          <a th:href="@{/alumnos/borrar/}+${alumno.codigo}" class="btn btn-danger">borrar</a>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- nav -->
+  <div class="row">
+    <div th:replace="commons/pagination :: pagination">
+  </div>
+
+  <div th:replace="commons/footer :: footer" class="container" />
+
+</body>
+
+</html>

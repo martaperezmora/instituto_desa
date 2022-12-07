@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="es" xmlsn:th="http://www.thymeleaf.org">
+  <head th:replace="commons/header :: header"/>
+<body>
+    <div th:replace="commons/menu :: menu"/>
+    <form class="row g-3" th:action="@{/alumnos/modificar}" method="post" enctype="multipart/form-data">
+      <input type="hidden" id="codigo" name="codigo" min="0" th:value="${alumno.codigo}">
+
+      <div class="col-md-3">
+        <label for="nombre" class="form-label" th:text="#{producto.nombre}">Nombre</label>
+        <input type="text" class="form-control" id="nombre" name="nombre" th:value="${alumno.nombre}" autofocus>
+      </div>
+
+      <div class="col-md-3">
+          <label for="apellidos" class="form-label" th:text="#{producto.descripcion}">Apellidos</label>
+          <textarea class="form-control" id="apellidos" name="apellidos" th:text="${alumno.apellidos}" rows="3"></textarea>
+      </div>
+
+      <div class="col-md-3">
+        <label for="dni" class="form-label" th:text="#{producto.precio}">Dni</label>
+        <input type="text" class="form-control" id="dni" name="precio" th:value="${alumno.dni}">
+      </div>
+
+      <div class="col-md-3">
+        <label for="fechaNac" class="form-label" th:text="#{producto.precio}">Fecha Nacimiento</label>
+        <input type="text" class="form-control" id="fechaNac" name="fechaNac" th:value="${alumno.fechaNac}">
+      </div>
+
+      <div class="col-md-3">
+        <label for="email" class="form-label" th:text="#{producto.precio}">Email</label>
+        <input type="text" class="form-control" id="email" name="email" th:value="${alumno.email}">
+      </div>
+
+      <div class="col-12">
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="esNuevo" name="esNuevo" th:checked="${alumno.esNuevo}">
+          <label class="form-check-label" for="gridCheck">
+            nuevo
+          </label>
+        </div>
+      </div>
+
+      <div class="container">
+        <div class="row">
+          <div class="col-3">
+            <div class="card" style="width: 18rem;">
+              <img th:src="'data:image/jpeg;base64,' + ${alumno.imageView}" class="card-img-top" alt="...">
+            </div>
+          </div>
+        </div>
+
+      <div class="mb-3">
+        <label for="imagenForm" class="form-label">Imagen</label>
+        <input class="form-control" type="file" name="imagenForm" id="imagenForm" th:value="${alumno.imagen}">
+      </div>
+
+      <div class="col-12">
+        <button type="submit" class="btn btn-primary">editar</button>
+      </div>
+
+    </form>
+    <a th:href="@{/alumnos/borrar/}+${alumno.codigo}" class="btn btn-danger">borrar alumno</a>
+      
+      <div th:replace="commons/footer :: footer" class="container"/>
+</body>
+</html>
